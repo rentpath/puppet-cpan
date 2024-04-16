@@ -67,6 +67,8 @@ Puppet::Type.type(:cpan).provide(:default) do
                        # use Module::Find maybe instead
                        "perl #{ll} -e '$module=#{resource[:name]}; eval \"local \\$^W = 0; require $module\";for ($shortpath = $module) {s{::}{/}g;s/$/.pm/;} \
                                               if (defined($INC{$shortpath})) {exit 0;}; exit 2'"
+                     when :dbdoracle
+                       "LD_LIBRARY_PATH=/u01/apps/oracle/product/12.1.0.2/client_1/lib; export LD_LIBRARY_PATH; perl #{ll} -M#{resource[:name]} -e1 > /dev/null 2>&1"
                      else
                        "perl #{ll} -M#{resource[:name]} -e1 > /dev/null 2>&1"
                      end
@@ -113,6 +115,8 @@ Puppet::Type.type(:cpan).provide(:default) do
                        # use Module::Find maybe instead
                        "perl #{ll} -e '$module=#{resource[:name]}; eval \"local \\$^W = 0; require $module\";for ($shortpath = $module) {s{::}{/}g;s/$/.pm/;} \
                                                     if (defined($INC{$shortpath})) {exit 0;}; exit 2'"
+                     when :dbdoracle
+                       "LD_LIBRARY_PATH=/u01/apps/oracle/product/12.1.0.2/client_1/lib; export LD_LIBRARY_PATH; perl #{ll} -M#{resource[:name]} -e1 > /dev/null 2>&1"
                      else
                        "perl #{ll} -M#{resource[:name]} -e1 > /dev/null 2>&1"
                      end
