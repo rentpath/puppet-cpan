@@ -61,7 +61,7 @@ Puppet::Type.newtype(:cpan) do
 
   newparam(:exists_strategy) do
     defaultto 'include'
-    newvalues('include', 'find')
+    newvalues('include', 'find', 'dbdoracle')
     desc 'Strategy to test for module existence'
   end
 
